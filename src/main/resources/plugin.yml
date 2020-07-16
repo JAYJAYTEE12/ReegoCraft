@@ -1,0 +1,11 @@
+name: ReegoCraft
+version: ${project.version}
+main: dev.jayjaytee.reegocraft.ReegoCraft
+api-version: 1.15
+authors: [JAYJAYTEE]
+
+commands:
+  crate:
+    description: Gives someone a crate.
+  reegoitems:
+    description: Gives you the custom items.
