@@ -9,3 +9,5 @@ commands:
     description: Gives someone a crate.
   reegoitems:
     description: Gives you the custom items.
+  rename:
+    description: Renames a item for you.
