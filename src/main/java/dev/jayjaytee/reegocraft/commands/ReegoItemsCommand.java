@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import static dev.jayjaytee.reegocraft.items.CustomItems.RenameNItem;
+import static dev.jayjaytee.reegocraft.items.CustomItems.UpgradeNItem;
 import static dev.jayjaytee.reegocraft.utils.CommandUtils.isInt;
 
 public class ReegoItemsCommand implements CommandExecutor {
@@ -18,13 +19,18 @@ public class ReegoItemsCommand implements CommandExecutor {
                 if(target != null){
                     if(isInt(args[2])){
 
-                        if(args[1].equalsIgnoreCase("rename")){
+                        if(args[1].equalsIgnoreCase("rename")) {
                             sender.sendMessage("§aSuccess!");
                             target.sendMessage("§aYou've been given a RENAME 'N ITEM (x" + args[2] + ")");
                             target.getInventory().addItem(RenameNItem(Integer.parseInt(args[2])));
                             return true;
+                        }else if(args[1].equalsIgnoreCase("upgrade")){
+                            sender.sendMessage("§aSuccess!");
+                            target.sendMessage("§aYou've been given a UPGRADE 'N ITEM (x" + args[2] + ")");
+                            target.getInventory().addItem(UpgradeNItem(Integer.parseInt(args[2])));
+                            return true;
                         }else{
-                            sender.sendMessage("§cThat item doesn't exist! TYPES: test");
+                            sender.sendMessage("§cThat item doesn't exist! TYPES: rename, upgrade");
                         }
 
                     }else{

@@ -1,8 +1,6 @@
 package dev.jayjaytee.reegocraft.commands;
 
 import de.tr7zw.nbtapi.NBTItem;
-import dev.jayjaytee.reegocraft.utils.InventoryUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -20,32 +18,43 @@ public class RenameCommand implements CommandExecutor {
             if(args.length == 0){
                 player.sendMessage("§cIncorrect Usage: /rename (text...)");
             }else if(args.length > 0){
-                for (ItemStack item : player.getInventory().getContents()) {
-                    if(item == null) { continue; }
-                    if (item.getType() == Material.SLIME_BALL) {
-                        NBTItem nbt = new NBTItem(item);
-                        if (nbt.getBoolean("renameToken")) {
-                            StringBuilder stringBuilder = new StringBuilder();
-                            for (int i = 0; i < args.length; i++) {
-                                if (i != 0) {
-                                    stringBuilder.append(" ").append(args[i]);
-                                } else {
-                                    stringBuilder.append(args[i]);
+                if(player.getInventory().getItemInMainHand() != null && player.getInventory().getItemInMainHand().getType() != Material.AIR) {
+                    for (ItemStack item : player.getInventory().getContents()) {
+                        if (item == null) {
+                            continue;
+                        }
+                        if (item.getType() == Material.SLIME_BALL) {
+                            NBTItem nbt = new NBTItem(item);
+                            if (nbt.getBoolean("renameToken")) {
+                                if(!player.getInventory().getItemInMainHand().equals(item)) {
+                                    StringBuilder stringBuilder = new StringBuilder();
+                                    for (int i = 0; i < args.length; i++) {
+                                        if (i != 0) {
+                                            stringBuilder.append(" ").append(args[i]);
+                                        } else {
+                                            stringBuilder.append(args[i]);
+                                        }
+                                    }
+                                    ItemStack hand = player.getInventory().getItemInMainHand();
+                                    ItemMeta handMeta = hand.getItemMeta();
+                                    handMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', stringBuilder.toString()));
+                                    hand.setItemMeta(handMeta);
+                                    item.setAmount(item.getAmount() - 1);
+                                    player.updateInventory();
+                                    player.sendMessage("§aYou set the item's display name to '" + stringBuilder.toString() + "'");
+                                    return true;
+                                }else{
+                                    player.sendMessage("§cYou cannot rename that item!");
+                                    return true;
                                 }
                             }
-                            ItemStack hand = player.getInventory().getItemInMainHand();
-                            ItemMeta handMeta = hand.getItemMeta();
-                            handMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', stringBuilder.toString()));
-                            hand.setItemMeta(handMeta);
-                            item.setAmount(item.getAmount() - 1);
-                            player.updateInventory();
-                            player.sendMessage("§aYou set the item's display name to '" + stringBuilder.toString() + "'");
-                            return true;
                         }
                     }
+                    player.sendMessage("§cYou don't have a rename token in your inventory!");
+                    return true;
+                }else{
+                    player.sendMessage("§cYou must have a item in your hand to execute that command!");
                 }
-                player.sendMessage("§cYou don't have a rename token in your inventory!");
-                return true;
             }
         }else{
             sender.sendMessage("§cYou must be a player to execute that command!");

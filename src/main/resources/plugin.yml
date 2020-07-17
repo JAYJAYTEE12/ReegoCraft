@@ -11,3 +11,5 @@ commands:
     description: Gives you the custom items.
   rename:
     description: Renames a item for you.
+  upgrade:
+    description: Upgrades a item for you.

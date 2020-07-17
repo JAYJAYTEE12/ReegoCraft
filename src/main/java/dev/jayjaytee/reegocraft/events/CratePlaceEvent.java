@@ -14,6 +14,8 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import static dev.jayjaytee.reegocraft.items.CustomItems.RenameNItem;
+import static dev.jayjaytee.reegocraft.items.CustomItems.UpgradeNItem;
 import static dev.jayjaytee.reegocraft.utils.NumberUtils.ChanceOf;
 
 
@@ -78,9 +80,11 @@ public class CratePlaceEvent implements Listener {
                                     if(ChanceOf(50)){
                                         h3.appendTextLine("§aRename 'n Item");
                                         h3.appendItemLine(new ItemStack(Material.SLIME_BALL));
+                                        player.getInventory().addItem(RenameNItem(1));
                                     }else{
                                         h3.appendTextLine("§dUpgrade 'n Item");
                                         h3.appendItemLine(new ItemStack(Material.DIAMOND_PICKAXE));
+                                        player.getInventory().addItem(UpgradeNItem(1));
                                     }
                                     block.getLocation().getWorld().strikeLightningEffect(h3.getLocation());
 
