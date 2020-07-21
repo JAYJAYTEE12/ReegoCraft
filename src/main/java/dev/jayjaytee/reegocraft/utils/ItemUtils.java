@@ -25,4 +25,14 @@ public class ItemUtils {
 
         return item;
     }
+    public static String getRarity(int type, boolean getColor){
+        String display = "Common";
+        String displayColor = "§f";
+        if(type==1) { display = "Uncommon"; displayColor = "§a"; }
+        if(type==2) { display = "Epic"; displayColor = "§d"; }
+        if(type==3) { display = "Legendary"; displayColor = "§6"; }
+        if(!getColor) {
+            return display;
+        } else { return displayColor; }
+    }
 }

@@ -10,6 +10,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
+import static dev.jayjaytee.reegocraft.utils.ItemUtils.getRarity;
+
 public class CustomItems {
     public static ItemStack RenameNItem(int amount){
         ItemStack item = new ItemStack(Material.SLIME_BALL, amount);
@@ -52,12 +54,10 @@ public class CustomItems {
         return item;
     }
     public static ItemStack xpBottle(int amount, int type){
-        String display = "Common";
-        String displayColor = "&f";
-        if(type==1) { display = "Uncommon"; displayColor = "&a"; }
-        if(type==2) { display = "Epic"; displayColor = "&d"; }
-        if(type==3) { display = "Legendary"; displayColor = "&6"; }
         ItemStack item = new ItemStack(Material.EXPERIENCE_BOTTLE, amount);
         ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(getRarity(type, true) + "§l" + getRarity(type, false) + "§f XP Bottle");
+        item.setItemMeta(meta);
+        return item;
     }
 }
