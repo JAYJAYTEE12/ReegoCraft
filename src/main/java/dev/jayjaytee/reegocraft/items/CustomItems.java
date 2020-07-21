@@ -57,6 +57,12 @@ public class CustomItems {
         ItemStack item = new ItemStack(Material.EXPERIENCE_BOTTLE, amount);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(getRarity(type, true) + "§l" + getRarity(type, false) + "§f XP Bottle");
+        ArrayList<String> lore = new ArrayList<String>();
+        lore.add("§7Smash it open to receive");
+        lore.add("§7experience!");
+        lore.add(" ");
+        lore.add(getRarity(type, true) + "§l" + getRarity(type, false).toUpperCase());
+        meta.setLore(lore);
         item.setItemMeta(meta);
         return item;
     }
