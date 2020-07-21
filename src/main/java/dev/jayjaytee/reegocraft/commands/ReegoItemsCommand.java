@@ -14,7 +14,7 @@ public class ReegoItemsCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(sender.hasPermission("reego.admin")) {
-            if(args.length == 4) {
+            if(args.length >= 3) {
                 Player target = Bukkit.getServer().getPlayer(args[0]);
                 if (target != null) {
                     if (isInt(args[2])) {
@@ -36,7 +36,6 @@ public class ReegoItemsCommand implements CommandExecutor {
                         } else {
                             sender.sendMessage("§cIncorrect Usage! /reegoitems (player) (type) (amount)");
                         }
-                        // Fix this prick
                         if (args.length == 4) {
                             if (isInt(args[3])) {
                                 if (args[1].equalsIgnoreCase("xp")) {

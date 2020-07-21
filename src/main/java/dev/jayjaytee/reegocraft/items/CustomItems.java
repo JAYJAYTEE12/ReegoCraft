@@ -64,6 +64,11 @@ public class CustomItems {
         lore.add(getRarity(type, true) + "§l" + getRarity(type, false).toUpperCase());
         meta.setLore(lore);
         item.setItemMeta(meta);
+
+        NBTItem nbt = new NBTItem(item);
+        nbt.setInteger("rarity", type);
+
+        item = nbt.getItem();
         return item;
     }
 }
