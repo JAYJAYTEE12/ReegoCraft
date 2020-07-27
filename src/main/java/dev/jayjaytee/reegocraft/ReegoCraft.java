@@ -1,9 +1,6 @@
 package dev.jayjaytee.reegocraft;
 
-import dev.jayjaytee.reegocraft.commands.CrateCommand;
-import dev.jayjaytee.reegocraft.commands.ReegoItemsCommand;
-import dev.jayjaytee.reegocraft.commands.RenameCommand;
-import dev.jayjaytee.reegocraft.commands.UpgradeCommand;
+import dev.jayjaytee.reegocraft.commands.*;
 import dev.jayjaytee.reegocraft.events.CratePlaceEvent;
 import dev.jayjaytee.reegocraft.events.CustomItemsPreventionEvent;
 import dev.jayjaytee.reegocraft.events.PlayerJoinEvent;
@@ -40,6 +37,8 @@ public final class ReegoCraft extends JavaPlugin {
         getCommand("reegoitems").setExecutor(new ReegoItemsCommand());
         getCommand("rename").setExecutor(new RenameCommand());
         getCommand("upgrade").setExecutor(new UpgradeCommand());
+        getCommand("save").setExecutor(new SaveCommand(this));
+        getCommand("reset").setExecutor(new ResetCommand(this));
     }
     private void registerEvents(){
         getServer().getPluginManager().registerEvents(new CratePlaceEvent(this), this);

@@ -14,3 +14,7 @@ commands:
     description: Renames a item for you.
   upgrade:
     description: Upgrades a item for you.
+  save:
+    description: Saves the player file.
+  reset:
+    description: Resets the player's file.

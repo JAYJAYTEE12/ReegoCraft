@@ -53,11 +53,11 @@ public class CratePlaceEvent implements Listener {
                     // 1
                     if(ChanceOf(50)){
                         h1.appendTextLine("§a1,000,000");
-                        main.getPlayerConfig().set(player.getUniqueId().toString() + ".Balance", main.getPlayerConfig().getDouble(player.getUniqueId().toString() + ".Balance")+1000000);
+                        main.getPlayerConfig().set(player.getUniqueId().toString() + ".Balance", main.getPlayerConfig().getInt(player.getUniqueId().toString() + ".Balance")+1000000);
                         h1.appendItemLine(new ItemStack(Material.PAPER));
                     }else{
                         h1.appendTextLine("§a2,000,000");
-                        main.getPlayerConfig().set(player.getUniqueId().toString() + ".Balance", main.getPlayerConfig().getDouble(player.getUniqueId().toString() + ".Balance")+2000000);
+                        main.getPlayerConfig().set(player.getUniqueId().toString() + ".Balance", main.getPlayerConfig().getInt(player.getUniqueId().toString() + ".Balance")+2000000);
                         h1.appendItemLine(new ItemStack(Material.PAPER));
                     }
                     block.getLocation().getWorld().strikeLightningEffect(h1.getLocation());
@@ -68,11 +68,11 @@ public class CratePlaceEvent implements Listener {
                             // 2
                             if(ChanceOf(50)){
                                 h2.appendTextLine("§e1,000 Renown");
-                                main.getPlayerConfig().set(player.getUniqueId().toString() + ".Balance", main.getPlayerConfig().getInt(player.getUniqueId().toString() + ".Renown")+1000);
+                                main.getPlayerConfig().set(player.getUniqueId().toString() + ".Renown", main.getPlayerConfig().getInt(player.getUniqueId().toString() + ".Renown")+1000);
                                 h2.appendItemLine(new ItemStack(Material.MAGMA_CREAM));
                             }else{
                                 h2.appendTextLine("§e2,000 Renown");
-                                main.getPlayerConfig().set(player.getUniqueId().toString() + ".Balance", main.getPlayerConfig().getInt(player.getUniqueId().toString() + ".Renown")+2000);
+                                main.getPlayerConfig().set(player.getUniqueId().toString() + ".Renown", main.getPlayerConfig().getInt(player.getUniqueId().toString() + ".Renown")+2000);
                                 h2.appendItemLine(new ItemStack(Material.MAGMA_CREAM));
                             }
                             block.getLocation().getWorld().strikeLightningEffect(h2.getLocation());
