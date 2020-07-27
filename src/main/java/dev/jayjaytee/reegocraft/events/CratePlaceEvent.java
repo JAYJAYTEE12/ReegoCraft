@@ -4,6 +4,7 @@ import com.gmail.filoghost.holographicdisplays.api.Hologram;
 import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
 import de.tr7zw.nbtapi.NBTItem;
 import dev.jayjaytee.reegocraft.ReegoCraft;
+import dev.jayjaytee.reegocraft.utils.NumberUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -14,8 +15,8 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import static dev.jayjaytee.reegocraft.items.CustomItems.RenameNItem;
-import static dev.jayjaytee.reegocraft.items.CustomItems.UpgradeNItem;
+import static dev.jayjaytee.reegocraft.items.CustomItems.*;
+import static dev.jayjaytee.reegocraft.utils.ItemUtils.getRarity;
 import static dev.jayjaytee.reegocraft.utils.NumberUtils.ChanceOf;
 
 
@@ -34,8 +35,7 @@ public class CratePlaceEvent implements Listener {
         NBTItem nbt = new NBTItem(handStack);
         System.out.println(nbt);
 
-        if(nbt.getString("crateType").equalsIgnoreCase("TEST")){
-            player.sendMessage("§aYou've placed a TEST CRATE");
+        if(nbt.getString("crateType").equalsIgnoreCase("COMMON")){
             block.getLocation().getWorld().strikeLightningEffect(block.getLocation());
 
             Hologram holo = HologramsAPI.createHologram(main, block.getLocation().add(0.5D, 1.5D, 0.5D));
@@ -45,7 +45,7 @@ public class CratePlaceEvent implements Listener {
             Hologram h4 = HologramsAPI.createHologram(main, block.getLocation().add( 0.5D, 3.5D, -2 + 0.5D));
             Hologram h5 = HologramsAPI.createHologram(main, block.getLocation().add( 0.5D, 4.5D, 0.5D));
 
-            holo.appendTextLine("§f§l*§f*§f§l* §d§lTEST §6§lCRATE §f§l*§f*§f§l*");
+            holo.appendTextLine("§f§l*§d§l*§f§l* §d§lREEGO CRATE: §f§nCommon Crate§f §f§l*§d§l*§f§l*");
 
             Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(main, new Runnable() {
                 @Override
@@ -92,13 +92,10 @@ public class CratePlaceEvent implements Listener {
                                         @Override
                                         public void run() {
                                             // 4
-                                            if(ChanceOf(50)){
-                                                h4.appendTextLine("§fCommon XP Bottle");
-                                                h4.appendItemLine(new ItemStack(Material.EXPERIENCE_BOTTLE));
-                                            }else{
-                                                h4.appendTextLine("§aUncommon XP Bottle");
-                                                h4.appendItemLine(new ItemStack(Material.EXPERIENCE_BOTTLE));
-                                            }
+                                            int bottle = NumberUtils.RandomNumberBetween(0, 3);
+                                            player.getInventory().addItem(xpBottle(1, bottle));
+                                            h4.appendTextLine(getRarity(bottle, true) + "§l" + getRarity(bottle, false) + " §fExperience Bottle");
+                                            h4.appendItemLine(new ItemStack(Material.EXPERIENCE_BOTTLE));
                                             block.getLocation().getWorld().strikeLightningEffect(h4.getLocation());
 
                                             Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(main, new Runnable() {

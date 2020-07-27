@@ -38,6 +38,7 @@ public class CustomItems {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName("§dUpgrade 'n Item");
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         meta.addEnchant(Enchantment.LURE, 1, true);
         List<String> lore = new ArrayList<>();
         lore.add(" ");
@@ -66,7 +67,7 @@ public class CustomItems {
         item.setItemMeta(meta);
 
         NBTItem nbt = new NBTItem(item);
-        nbt.setInteger("rarity", type);
+        nbt.setInteger("rarity", type+1);
 
         item = nbt.getItem();
         return item;

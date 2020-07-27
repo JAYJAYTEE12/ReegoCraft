@@ -8,6 +8,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.ArrayList;
 
 import static dev.jayjaytee.reegocraft.utils.CommandUtils.isInt;
 import static dev.jayjaytee.reegocraft.utils.ItemUtils.createItem;
@@ -21,15 +24,15 @@ public class CrateCommand implements CommandExecutor {
                 if(target != null){
                     if(isInt(args[2])){
 
-                        if(args[1].equalsIgnoreCase("test")){
-                            ItemStack item = createItem(Material.ENDER_CHEST, Integer.parseInt(args[2]), "&f&l*** &d&lTEST &6&lCRATE &f&l***");
+                        if(args[1].equalsIgnoreCase("common")){
+                            ItemStack item = createItem(Material.ENDER_CHEST, Integer.parseInt(args[2]), "§f§l*§d§l*§f§l* §d§lREEGO CRATE: §f§nCommon Crate§f §f§l*§d§l*§f§l*", "§d§lUnlocked by §f§o" + target.getDisplayName(), " §d§lat §f§nmc.reego.org", " ", "§f§l§nSPECIAL REWARDS", "§f* VIP Rank", "§f* MVP Rank", " ", "§6§l§nTREASURE ITEMS", "§6* 1,000,000 - 2,000,000 In-game Cash", "§6* 1,000 - 2,000 Renown", "§6* Common Experience Bottle - Legendary Experience Bottle", " ", "§e§l§nITEM MODS", "§e* Rename 'n Item", "§e* Upgrade 'n Item", " ", "§cEnsure you have a lot of free space!", "§d§nPlace in an open area for best results!", "§7Hint: Place on ground");
                             NBTItem nbt = new NBTItem(item);
-                            nbt.setString("crateType", "test");
+                            nbt.setString("crateType", "common");
                             item = nbt.getItem();
                             target.getInventory().addItem(item);
                             return true;
                         }else{
-                            sender.sendMessage("§cThat crate doesn't exist! TYPES: test");
+                            sender.sendMessage("§cThat crate doesn't exist! TYPES: Common");
                         }
 
                     }else{

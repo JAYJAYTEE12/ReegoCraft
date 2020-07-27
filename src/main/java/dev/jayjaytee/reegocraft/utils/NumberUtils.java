@@ -8,4 +8,7 @@ public class NumberUtils {
         int rNum = r.nextInt(100) + 1;
         return rNum < chance;
     }
+    public static int RandomNumberBetween(int lower, int upper){
+        return new Random().nextInt((upper - lower) + 1) + lower;
+    }
 }
