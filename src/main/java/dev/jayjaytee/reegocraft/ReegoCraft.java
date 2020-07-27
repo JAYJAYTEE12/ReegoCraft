@@ -6,6 +6,7 @@ import dev.jayjaytee.reegocraft.commands.RenameCommand;
 import dev.jayjaytee.reegocraft.commands.UpgradeCommand;
 import dev.jayjaytee.reegocraft.events.CratePlaceEvent;
 import dev.jayjaytee.reegocraft.events.CustomItemsPreventionEvent;
+import dev.jayjaytee.reegocraft.events.PlayerJoinEvent;
 import dev.jayjaytee.reegocraft.events.XPBottleSplashEvent;
 import dev.jayjaytee.reegocraft.managers.SaveManager;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -44,6 +45,7 @@ public final class ReegoCraft extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new CratePlaceEvent(this), this);
         getServer().getPluginManager().registerEvents(new XPBottleSplashEvent(), this);
         getServer().getPluginManager().registerEvents(new CustomItemsPreventionEvent(), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoinEvent(this), this);
     }
 
     public FileConfiguration getPlayerConfig() { return playerConfig; }
