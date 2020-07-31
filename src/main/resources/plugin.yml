@@ -18,3 +18,8 @@ commands:
     description: Saves the player file.
   reset:
     description: Resets the player's file.
+  eco:
+    description: Change a player's balance
+  balance:
+    description: Get your balance.
+    aliases: [bal, money, cash]

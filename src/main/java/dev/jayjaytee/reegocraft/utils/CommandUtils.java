@@ -9,4 +9,12 @@ public class CommandUtils {
         }
         return true;
     }
+    public static boolean isFloat(String s) {
+        try {
+            Float.parseFloat(s);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
 }

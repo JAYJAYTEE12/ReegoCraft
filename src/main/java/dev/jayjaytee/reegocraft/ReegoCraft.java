@@ -39,6 +39,8 @@ public final class ReegoCraft extends JavaPlugin {
         getCommand("upgrade").setExecutor(new UpgradeCommand());
         getCommand("save").setExecutor(new SaveCommand(this));
         getCommand("reset").setExecutor(new ResetCommand(this));
+        getCommand("eco").setExecutor(new EconomyCommand(this));
+        getCommand("balance").setExecutor(new BalanceCommand(this));
     }
     private void registerEvents(){
         getServer().getPluginManager().registerEvents(new CratePlaceEvent(this), this);
